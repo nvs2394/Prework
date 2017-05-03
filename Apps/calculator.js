@@ -4,12 +4,13 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput
+  TextInput,
+  Button
 } from 'react-native';
 
 import SegmentedControlTab from 'react-native-segmented-control-tab'
 
-export default class Cal extends Component{
+export default class Calculator extends Component{
 
    constructor(){
       super()
@@ -17,8 +18,13 @@ export default class Cal extends Component{
         selectedIndex: 0,
         billAmount:0,
         result:0,
-        tipAmount:0
+        tipAmount:0,
+        sceneTransition: 'FloatFromRight',
       };
+    }
+
+    static navigationOptions = {
+        title:"Tip caculator",
     }
 
     handleIndexChange = (index) => {
@@ -56,12 +62,16 @@ export default class Cal extends Component{
     }
 
     render(){
+        const { navigate} = this.props.navigation; 
         return(
-           <View>
+           <View style={styles.container}>
                 <View>
-                    <Text>Tip calculator</Text>
+                    <Button title="Setting" onPress={() => navigate('Setting')}/>
                 </View>
                 <View>
+                    <Text style={styles.header}>Tip calculator</Text>
+                </View>
+                <View style={styles.container}>
                     <Text>Bill amount</Text>
                     <TextInput 
                         onChangeText={(billAmount)=>this.handleBillAmountChange(billAmount)}
@@ -91,4 +101,17 @@ export default class Cal extends Component{
 
 }
 
-module.exports =Cal;
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  header: {
+    fontSize: 36,
+    marginTop: 48,
+    textAlign: 'center',
+  }
+});
+
+module.exports =Calculator;

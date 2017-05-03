@@ -12,14 +12,6 @@ import {
   View
 } from 'react-native';
 
-import Calculator from "./Apps/calculator.js"
-
-export default class PreWork extends Component {
-  render() {
-    return (
-     <Calculator/>
-    );
-  }
-}
+import PreWork from "./Apps/main.js"
 
 AppRegistry.registerComponent('PreWork', () => PreWork);
